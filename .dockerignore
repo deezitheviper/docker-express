@@ -1,6 +1,13 @@
 node_modules
-Dockerfile
-.gitignore
-.dockerignore
 .git
-docker-compose*
+.vscode
+.*ignore
+.env
+.dockerignore
+docker-compose*.yml
+Dockerfile*
+README.md
+*.yaml
+# To prevent storing dev/temporary container data
+*.csv
+tmp

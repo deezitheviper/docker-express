@@ -1,10 +1,9 @@
 version: '3'
 services:
   node-app:
-    build: .
     ports:
       - "5000:5000"
     volumes:
-      - ./:/app
+      - ./server.js:/app/server.js
       - /app/node_modules
    
