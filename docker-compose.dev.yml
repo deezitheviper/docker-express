@@ -5,7 +5,12 @@ services:
       context: .
       args:
         - NODE_ENV=development
+    volumes:
+      - ./server.js:/app/server.js
+      - /app/node_modules
     environment:
       - NODE_ENV=development
     command: npm run dev
+
+
 

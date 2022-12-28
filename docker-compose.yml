@@ -3,7 +3,15 @@ services:
   node-app:
     ports:
       - "5000:5000"
+  
+  mongo:
+    image: mongo
     volumes:
-      - ./server.js:/app/server.js
-      - /app/node_modules
-   
+      - mongo-db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: oculus14
+
+volumes:
+  mongo-db: 
+     
