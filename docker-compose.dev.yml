@@ -8,9 +8,16 @@ services:
     volumes:
       - ./server.js:/app/server.js
       - /app/node_modules
-    environment:
-      - NODE_ENV=development
+
+    env_file:
+      - ./.env
+    #environment:
+    #  - NODE_ENV=development
+    #  - MONGO_USER=root
+    #  - MONGO_PASSWORD=
+
     command: npm run dev
+
 
 
 
