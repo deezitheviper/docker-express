@@ -7,6 +7,9 @@ services:
         - NODE_ENV=development
     volumes:
       - ./server.js:/app/server.js
+      - ./controllers:/app/controllers
+      - ./models:/app/models
+      - ./routes:/app/routes
       - /app/node_modules
 
     env_file:
@@ -15,8 +18,8 @@ services:
     #  - NODE_ENV=development
     #  - MONGO_USER=root
     #  - MONGO_PASSWORD=
-
     command: npm run dev
+
 
 
 
