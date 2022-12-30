@@ -10,6 +10,7 @@ import postRouter from './routes/postRoutes.js';
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 //connect DB
  
@@ -32,8 +33,8 @@ const connectDB = async () => {
 app.get('/', (req, res) => {
     res.send('<h2>Hello World!</h2>');
 })
-app.get('/api/posts',postRouter)
-
+app.use('/api/posts',postRouter)
+ 
 
 app.listen(5000, () => {
     connectDB();
