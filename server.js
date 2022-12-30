@@ -12,16 +12,20 @@ const app = express();
 
 //connect DB
 
+
 const connectDB = async () => {
-    console.log(MONGO_USER,MONGO_PASSWORD)
     try{
         mongoose.set('strictQuery', false)
-    await mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
+        await mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
     console.log('Connected to MongoDB')
     }catch(err){
         console.log(err)
+        setTimeout(() => {
+            connectDB()
+        },5000)
     }
 }
+
 
 app.get('/', (req, res) => {
     res.send('<h2>Hello World!</h2>');
