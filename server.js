@@ -58,7 +58,7 @@ const connectDB = async () => {
 }
 
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('<h2>Hello World!</h2>');
 })
 app.use('/api/posts',postRouter)
