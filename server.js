@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { MONGO_IP, MONGO_PASSWORD, MONGO_PORT, MONGO_USER } from './config/config.js'; 
 import postRouter from './routes/postRoutes.js';
-
+import authRouter from './routes/authRoutes.js';
  
 
 
@@ -34,6 +34,7 @@ app.get('/', (req, res) => {
     res.send('<h2>Hello World!</h2>');
 })
 app.use('/api/posts',postRouter)
+app.use('/api/auth',authRouter)
  
 
 app.listen(5000, () => {
