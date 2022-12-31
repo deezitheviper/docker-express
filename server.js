@@ -1,9 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { MONGO_IP, MONGO_PASSWORD, MONGO_PORT, MONGO_USER } from './config/config.js'; 
+import session from 'express-session';
+import { MONGO_IP, MONGO_PASSWORD, MONGO_PORT, MONGO_USER, REDIS_HOST, REDIS_PORT, SESSION_SECRET } from './config/config.js'; 
 import postRouter from './routes/postRoutes.js';
 import authRouter from './routes/authRoutes.js';
+import {createClient} from 'redis';
+import redis from 'connect-redis';
+
  
 
 
@@ -12,9 +16,33 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-//connect DB
- 
+const RedisStore = redis(session);
 
+
+const redisClient = createClient({
+    legacyMode: true,
+    socket: {
+    host: REDIS_HOST,
+    port: REDIS_PORT
+    }
+})
+redisClient.connect().catch(console.error)
+
+app.use(
+    session({
+      store: new RedisStore({ client: redisClient }),
+      saveUninitialized: false,
+      secret: SESSION_SECRET, 
+      resave: false,
+      cookie:{
+        httpOnly: true,
+        secure: false,
+        maxAge: 30000, 
+      }
+    })
+  )
+
+//connect DB
 const connectDB = async () => {
     
     try{
