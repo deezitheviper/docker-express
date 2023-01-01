@@ -48,7 +48,7 @@ app.use(
 
 //connect DB
 const connectDB = async () => {
-    
+
     try{
         mongoose.set('strictQuery', false)
         await mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?directConnection=true&authSource=admin`) 

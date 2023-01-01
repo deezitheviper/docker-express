@@ -20,10 +20,6 @@ services:
 
     env_file:
       - ./.env
-    #environment:
-    #  - NODE_ENV=development
-    #  - MONGO_USER=root
-    #  - MONGO_PASSWORD=
     command: npm run dev
 
 
