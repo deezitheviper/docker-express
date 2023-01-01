@@ -48,6 +48,7 @@ app.use(
 
 //connect DB
 const connectDB = async () => {
+console.log(MONGO_USER, MONGO_PASSWORD)
 
     try{
         mongoose.set('strictQuery', false)
