@@ -7,6 +7,7 @@ import postRouter from './routes/postRoutes.js';
 import authRouter from './routes/authRoutes.js';
 import {createClient} from 'redis';
 import redis from 'connect-redis';
+import cors from 'cors';
 
  
 
@@ -15,9 +16,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.set('trust proxy', true)
+app.use(cors({}));
+
 
 const RedisStore = redis(session);
-
 
 const redisClient = createClient({
     legacyMode: true,
@@ -27,6 +30,7 @@ const redisClient = createClient({
     }
 })
 redisClient.connect().catch(console.error)
+
 
 app.use(
     session({
@@ -60,6 +64,7 @@ const connectDB = async () => {
 
 app.get('/api', (req, res) => {
     res.send('<h2>Hello World!</h2>');
+    console.log("Test Load Bal")
 })
 app.use('/api/posts',postRouter)
 app.use('/api/auth',authRouter)
